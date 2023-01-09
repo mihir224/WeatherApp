@@ -5,6 +5,7 @@ const bodyParser=require("body-parser");
 const app=express();
 app.use(express.static("public")); //to use static files like css
 app.use(bodyParser.urlencoded({extended:true}));
+app.set('view engine', 'ejs');
 app.get('/',function(req,res){
     res.sendFile(__dirname+"/index.html");
     app.post("/",function(req,res){
@@ -21,11 +22,8 @@ app.get('/',function(req,res){
             const icon=weatherData.weather[0].icon;
             const imageUrl="http://openweathermap.org/img/wn/" + icon + "@2x.png";
             //to send multiple html items at once
-            res.write("<h1>The Weather Channel</h1>")
-            res.write("<h2>It is currently " + temp + " Degree Celcius in " + query + "</h2>");
-            res.write("<img src=" +imageUrl+"></img>");
-            res.send();
-        })
+            res.render("weather",{temp:temp,query:query,icon:imageUrl,weatherDesc:weatherDescription});
+        });
     })
     })
        
