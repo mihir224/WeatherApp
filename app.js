@@ -18,11 +18,12 @@ app.get('/',function(req,res){
             const temp=weatherData.main.temp; //to tap into the temp key value in the json file
             console.log(temp);
             const weatherDescription=weatherData.weather[0].description;
+            const city=weatherData.name;
             console.log(weatherDescription);
             const icon=weatherData.weather[0].icon;
             const imageUrl="http://openweathermap.org/img/wn/" + icon + "@2x.png";
             //to send multiple html items at once
-            res.render("weather",{temp:temp,query:query,icon:imageUrl,weatherDesc:weatherDescription});
+            res.render("weather",{temp:temp,query:city,icon:imageUrl,weatherDesc:weatherDescription,country:weatherData.sys.country});
         });
     })
     })

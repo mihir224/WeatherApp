@@ -5,12 +5,16 @@ body{
     text-align: center;
 }
 #city{
+    margin:8px;
     border:5px solid transparent;
     border-radius: 4px;
     font-family: "Montserrat";
-
+    background-color: #EAEAEA;
+    background-color: white;
 }
+
 #submit{
+    margin:8px;
     border: 5px solid transparent;
     border-radius: 4px;
     background-color: white;
