@@ -15,6 +15,10 @@ app.get('/',function(req,res){
         response.on("data", function(data){
             const weatherData=JSON.parse(data);
             console.log(weatherData);
+            if(weatherData.cod=='404'){
+                res.send(weatherData.message);
+            }
+            else{
             const temp=weatherData.main.temp; //to tap into the temp key value in the json file
             console.log(temp);
             const weatherDescription=weatherData.weather[0].description;
@@ -23,7 +27,7 @@ app.get('/',function(req,res){
             const icon=weatherData.weather[0].icon;
             const imageUrl="http://openweathermap.org/img/wn/" + icon + "@2x.png";
             //to send multiple html items at once
-            res.render("weather",{temp:temp,query:city,icon:imageUrl,weatherDesc:weatherDescription,country:weatherData.sys.country});
+            res.render("weather",{temp:temp,query:city,icon:imageUrl,weatherDesc:weatherDescription,country:weatherData.sys.country});}
         });
     })
     })
