@@ -20,6 +20,7 @@ body{
     background-color: white;
     margin-left: 5px;
     font-family: "Montserrat";
+    cursor: pointer;
 }
 #submit:hover{
     background-color: aliceblue;

@@ -1,6 +1,6 @@
-const API_KEY=require(__dirname+"/hidden.js");
 const express=require("express");
 const https=require("https");
+require('dotenv').config();
 const bodyParser=require("body-parser");
 const app=express();
 app.use(express.static("public")); //to use static files like css
@@ -11,7 +11,7 @@ app.get('/',function(req,res){
     app.post("/",function(req,res){
         const query=req.body.city; //to read the city entered by use
         const unit="metric";
-        https.get("https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+API_KEY.API+"&units="+unit,function(response){
+        https.get("https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+process.env.API_KEY+"&units="+unit,function(response){
         response.on("data", function(data){
             const weatherData=JSON.parse(data);
             console.log(weatherData);
